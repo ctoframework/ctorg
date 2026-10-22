@@ -2,6 +2,8 @@
 
 Draw an org chart from a JSON file, in the terminal, as PNG, or as SVG. You can also list people and print counts.
 
+![Example org chart](examples/orgchart.png)
+
 ## Install
 
     pip install -r requirements.txt
