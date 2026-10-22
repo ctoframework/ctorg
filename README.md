@@ -8,7 +8,7 @@ Draw an org chart from a JSON file, in the terminal, as PNG, or as SVG. You can 
 
     pip install -r requirements.txt
 
-Requires Python 3 with `click` and `Pillow`. `pytest` is only needed to run the tests.
+Requires Python 3 with `click`, `Pillow` and `svgwrite`. `pytest` is only needed to run the tests.
 
 ## Data
 

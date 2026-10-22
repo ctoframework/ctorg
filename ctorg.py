@@ -8,9 +8,9 @@ from collections import Counter
 from collections.abc import Callable, Iterable, Sequence
 from pathlib import Path
 from typing import Any, TextIO, TypedDict, cast
-from xml.sax.saxutils import escape
 
 import click
+import svgwrite
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -241,39 +241,39 @@ def render_svg(people: list[Person], roots: list[Person], children: Tree, path: 
     positions, width, height = place(roots, children)
     fills = team_fills(people)
 
-    parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-        f'viewBox="0 0 {width} {height}" font-family="DejaVu Sans, Verdana, sans-serif">',
-        f'<rect width="{width}" height="{height}" fill="white"/>',
-    ]
-    for (x1, y1), (x2, y2) in edge_segments(children, positions):
-        parts.append(f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="{EDGE}" stroke-width="2"/>')
+    drawing = svgwrite.Drawing(size=(width, height), profile="full")
+    drawing.viewbox(0, 0, width, height)
+    drawing["font-family"] = "DejaVu Sans, Verdana, sans-serif"
+    drawing.add(drawing.rect(insert=(0, 0), size=(width, height), fill="white"))
+    for start, end in edge_segments(children, positions):
+        drawing.add(drawing.line(start=start, end=end, stroke=EDGE, stroke_width=2))
 
     for person in people:
         cx, top = positions[person["name"]]
         left = cx - NODE_W / 2
         fill = fills.get(person.get("team", ""), NO_TEAM)
-        parts.append(
-            f'<rect x="{left}" y="{top}" width="{NODE_W}" height="{NODE_H}" rx="10" '
-            f'fill="{fill}" stroke="{EDGE}" stroke-width="1"/>'
+        drawing.add(
+            drawing.rect(
+                insert=(left, top), size=(NODE_W, NODE_H), rx=10, ry=10, fill=fill, stroke=EDGE, stroke_width=1
+            )
         )
-        parts.append(
-            f'<text x="{left + PADDING}" y="{top + PADDING + 16}" font-size="16" font-weight="bold">'
-            f"{escape(person['name'])}</text>"
+        drawing.add(
+            drawing.text(person["name"], insert=(left + PADDING, top + PADDING + 16), font_size=16, font_weight="bold")
         )
-        parts.append(
-            f'<text x="{left + PADDING}" y="{top + PADDING + LINE_H + 14}" font-size="14">'
-            f"{escape(role_text(person))}</text>"
+        drawing.add(
+            drawing.text(role_text(person), insert=(left + PADDING, top + PADDING + LINE_H + 14), font_size=14)
         )
         if person.get("team"):
-            parts.append(
-                f'<text x="{left + PADDING}" y="{top + PADDING + 2 * LINE_H + 14}" font-size="14" fill="#333333">'
-                f"{escape('Team: ' + person['team'])}</text>"
+            drawing.add(
+                drawing.text(
+                    "Team: " + person["team"],
+                    insert=(left + PADDING, top + PADDING + 2 * LINE_H + 14),
+                    font_size=14,
+                    fill="#333333",
+                )
             )
-    parts.append("</svg>")
 
-    with open(path, "w", encoding="utf-8") as f:
-        f.write("\n".join(parts) + "\n")
+    drawing.saveas(path, pretty=True)
 
 
 def levels(roots: list[Person], children: Tree) -> int:
