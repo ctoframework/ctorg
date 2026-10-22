@@ -1,0 +1,104 @@
+[
+	{
+		"name": "Elena Marsh",
+		"role": "Lead",
+		"team": "Leadership",
+		"manager": null
+	},
+	{
+		"name": "Maya Okafor",
+		"role": "Engineering Manager",
+		"seniority": "Senior",
+		"team": "Platform",
+		"manager": "Elena Marsh"
+	},
+	{
+		"name": "Lukas Brandt",
+		"role": "Developer",
+		"seniority": "Senior",
+		"team": "Platform",
+		"manager": "Maya Okafor"
+	},
+	{
+		"name": "Priya Raman",
+		"role": "Developer",
+		"seniority": "Mid",
+		"team": "Platform",
+		"manager": "Maya Okafor"
+	},
+	{
+		"name": "Tomas Lindqvist",
+		"role": "Developer",
+		"seniority": "Junior",
+		"team": "Platform",
+		"manager": "Maya Okafor"
+	},
+	{
+		"name": "Aiko Tanaka",
+		"role": "Product Manager",
+		"seniority": "Senior",
+		"team": "Product",
+		"manager": "Elena Marsh"
+	},
+	{
+		"name": "Diego Herrera",
+		"role": "Designer",
+		"seniority": "Mid",
+		"team": "Product",
+		"manager": "Aiko Tanaka"
+	},
+	{
+		"name": "Grace Mensah",
+		"role": "Developer",
+		"seniority": "Mid",
+		"team": "Product",
+		"manager": "Aiko Tanaka"
+	},
+	{
+		"name": "Ethan Brooks",
+		"role": "Developer",
+		"team": "Product",
+		"manager": "Aiko Tanaka"
+	},
+	{
+		"name": "Nadia Petrova",
+		"role": "QA Lead",
+		"seniority": "Senior",
+		"team": "QA",
+		"manager": "Elena Marsh"
+	},
+	{
+		"name": "Kofi Asante",
+		"role": "Tester",
+		"seniority": "Mid",
+		"team": "QA",
+		"manager": "Nadia Petrova"
+	},
+	{
+		"name": "Ines Moreau",
+		"role": "Tester",
+		"seniority": "Junior",
+		"team": "QA",
+		"manager": "Nadia Petrova"
+	},
+	{
+		"name": "Ravi Kumar",
+		"role": "Tester",
+		"team": "QA",
+		"manager": "Nadia Petrova"
+	},
+	{
+		"name": "Sofia Rossi",
+		"role": "Developer",
+		"seniority": "Junior",
+		"team": "Platform",
+		"manager": "Maya Okafor"
+	},
+	{
+		"name": "Hiro Sato",
+		"role": "Analyst",
+		"seniority": "Mid",
+		"team": "Product",
+		"manager": "Aiko Tanaka"
+	}
+]
