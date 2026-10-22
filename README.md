@@ -6,6 +6,10 @@ Draw an org chart from a JSON file, in the terminal, as PNG, or as SVG. You can 
 
 ## Install
 
+    pip install ctorg
+
+To work from a clone instead, install the requirements file:
+
     pip install -r requirements.txt
 
 Requires Python 3 with `click`, `Pillow` and `svgwrite`. `pytest` is only needed to run the tests.
